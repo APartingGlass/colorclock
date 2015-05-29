@@ -1,10 +1,10 @@
 "use strict";
 
 var Promise = require('es6-promise').Promise
-// just Node?
-// var fetch = require('node-fetch')
-// Browserify?
-// require('whatwg-fetch') //--> not a typo, don't store as a var
+    // just Node?
+    // var fetch = require('node-fetch')
+    // Browserify?
+    // require('whatwg-fetch') //--> not a typo, don't store as a var
 
 // es6 polyfills, powered by babel
 require("babel/register")
@@ -18,7 +18,16 @@ require("babel/register")
 // window.addEventListener('load', app)
 
 // function app() {
-    // start app
-    // new Router()
+// start app
+// new Router()
 // }
 
+var timeCheck = setInterval(() => {
+    var d = new Date()
+    var timeArr = [d.getHours(), d.getMinutes(), d.getSeconds()].map((v) => {
+        var stringTime = v.toString()
+        return v < 10 ? ("0"+stringTime) : stringTime
+    })
+    var timeString = timeArr.join(': ')
+    document.querySelector(".time").innerHTML = timeString;
+}, 1000).then
