@@ -9,6 +9,7 @@
 *:before,
 *:after {
     box-sizing: border-box;
+    transition: all 0.5s ease;
 }
 /**
  * GRIDS
@@ -80,24 +81,36 @@ img {
     background-color: blue;
     display: block;
     position: relative;
-    height: 800px;
+    height: 600px;
     width: 800px;
     .clock {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        opacity: 0;
         height: 25%;
         width: 50%;
-        .time {
+        &:hover > .time {
+            opacity: 0;
+        }
+        &:hover >.hextime {
+            opacity: 1
+        }
+        .time,
+        .hextime {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color:red;
             color: white;
             font-size: 3rem;
+        }
+        .hextime {
+            opacity: 0;
+        }
+        hr {
+            position: relative;
+            top: 75%
         }
     }
 }

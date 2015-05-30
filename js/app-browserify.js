@@ -22,12 +22,22 @@ require("babel/register")
 // new Router()
 // }
 
+var formatTime = (arr, base) => {
+    return arr.map((v) => {
+        var val = v.toString(base).toUpperCase()
+        return val.length < 2 ? ("0" + val) : val
+    })
+}
+
 var timeCheck = setInterval(() => {
     var d = new Date()
-    var timeArr = [d.getHours(), d.getMinutes(), d.getSeconds()].map((v) => {
-        var stringTime = v.toString()
-        return v < 10 ? ("0"+stringTime) : stringTime
-    })
-    var timeString = timeArr.join(': ')
-    document.querySelector(".time").innerHTML = timeString;
-}, 1000).then
+    var timeArr = [d.getHours(), d.getMinutes(), d.getSeconds()]
+    var regTime = formatTime(timeArr, 10)
+    var hexTime = formatTime(timeArr, 16)
+    document.querySelector('.time').innerHTML = regTime.join(':');
+    document.querySelector('.hextime').innerHTML = hexTime.join(':');
+    var bkgr = `#${hexTime.join('')}`
+    document.querySelector('.container').style['background'] = bkgr;
+    document.querySelector('.line').style['width'] = (((timeArr[2]/60)*100)+'%')
+}, 1000)
+
